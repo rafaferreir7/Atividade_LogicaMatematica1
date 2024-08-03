@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+int main() {
+    // Dados fornecidos
+    int Total_alunos = 36;
+    int Erraram_todas = 4;
+    int Acertaram_somente_segunda = 5;
+    int Acertaram_somente_terceira = 7;
+    int Acertaram_primeira_e_segunda = 9;
+    int Acertaram_primeira_e_terceira = 10;
+    int Acertaram_segunda_e_terceira = 7;
+
+    // Número total de alunos que acertaram pelo menos uma questão
+    int Total_acertam_pelo_menos_um = Total_alunos - Erraram_todas;
+
+    // Calcula o número de alunos que acertaram todas as três questões (X)
+    int X = Total_acertam_pelo_menos_um - (Acertaram_primeira_e_segunda + Acertaram_primeira_e_terceira + Acertaram_segunda_e_terceira - Total_alunos);
+
+    // Imprime o resultado
+    printf("Número de alunos que acertaram todas as três questões: %d\n", X);
+
+    return 0;
+}
