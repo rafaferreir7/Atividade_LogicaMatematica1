@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+int main() {
+    // Dados fornecidos
+    int Total_alunos = 18;
+    int Rec_P_e_C = 6;
+    int Rec_P_e_M = 5;
+    int Rec_M_e_C = 9;
+    int Rec_P_e_M_e_C = 2;
+
+    // Calcula o número de alunos que fazem recuperação somente em Português e somente em Ciências
+    int Rec_P = Rec_P_e_M + Rec_P_e_C - Rec_P_e_M_e_C;
+    int Rec_C = Rec_M_e_C + Rec_P_e_C - Rec_P_e_M_e_C;
+
+    // Usa a fórmula da inclusão e exclusão para encontrar o número de alunos que fazem recuperação somente em Matemática
+    int Total_com_rec = Total_alunos;
+    int Rec_M = Total_com_rec - (Rec_P + Rec_C - Rec_P_e_M - Rec_M_e_C - Rec_P_e_C + Rec_P_e_M_e_C);
+
+    // Calcula o número de alunos que fazem recuperação somente em Matemática
+    int Rec_M_somente = Rec_M - (Rec_P_e_M + Rec_M_e_C - Rec_P_e_M_e_C);
+
+    // Imprime o resultado
+    printf("Número de alunos que farão recuperação somente em Matemática: %d\n", Rec_M_somente);
+
+    return 0;
+}
