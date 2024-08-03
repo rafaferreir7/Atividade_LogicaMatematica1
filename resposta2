@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+int main() {
+    // Dados fornecidos
+    int A = 210;  // Pessoas que compram o produto A
+    int B = 210;  // Pessoas que compram o produto B
+    int C = 250;  // Pessoas que compram o produto C
+    int AB = 60;  // Pessoas que compram os produtos A e B
+    int AC = 70;  // Pessoas que compram os produtos A e C
+    int BC = 50;  // Pessoas que compram os produtos B e C
+    int ABC = 20; // Pessoas que compram os 3 produtos
+    int Nenhum = 100; // Pessoas que não compram nenhum dos produtos
+
+    // Calcula o número total de pessoas que compram pelo menos um produto
+    int Total_compram_pelo_menos_um = A + B + C - AB - AC - BC + ABC;
+
+    // Calcula o número total de pessoas entrevistadas
+    int Total_entrevistados = Total_compram_pelo_menos_um + Nenhum;
+
+    // Imprime o resultado
+    printf("Número total de pessoas entrevistadas: %d\n", Total_entrevistados);
+
+    return 0;
+}
