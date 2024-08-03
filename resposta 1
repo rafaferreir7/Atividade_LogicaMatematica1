@@ -1,0 +1,87 @@
+//Em programação, um conjunto é uma estrutura de dados que armazena uma coleção de elementos únicos, sem ordem específica. Ou seja, em um conjunto, não pode haver elementos duplicados, e a ordem dos elementos não é garantida.
+Os conjuntos são úteis para várias operações, como a verificação de pertença, a eliminação de duplicatas e a realização de operações matemáticas como união, interseção e diferença.Em programação, um conjunto é uma estrutura de dados que armazena uma coleção de elementos únicos, sem ordem específica. Ou seja, em um conjunto, não pode haver elementos duplicados, e a ordem dos elementos não é garantida.
+Os conjuntos são úteis para várias operações, como a verificação de pertença, a eliminação de duplicatas e a realização de operações matemáticas como união, interseção e diferença.
+ codigo para exemplo:
+
+#include <stdio.h>
+#include <stdbool.h>
+
+#define MAX_SIZE 100
+typedef struct {
+    int elementos[MAX_SIZE];
+    int tamanho;
+} Conjunto;
+
+// Inicializa um conjunto vazio
+void inicializarConjunto(Conjunto *conjunto) {
+    conjunto->tamanho = 0;
+}
+
+// Adiciona um elemento ao conjunto (não permite duplicatas)
+void adicionarElemento(Conjunto *conjunto, int elemento) {
+    if (conjunto->tamanho < MAX_SIZE) {
+        // Verifica se o elemento já existe
+        for (int i = 0; i < conjunto->tamanho; i++) {
+            if (conjunto->elementos[i] == elemento) {
+                return; // O elemento já está no conjunto
+            }
+        }
+        // Adiciona o novo elemento
+        conjunto->elementos[conjunto->tamanho] = elemento;
+        conjunto->tamanho++;
+    }
+}
+
+// Remove um elemento do conjunto
+void removerElemento(Conjunto *conjunto, int elemento) {
+    for (int i = 0; i < conjunto->tamanho; i++) {
+        if (conjunto->elementos[i] == elemento) {
+            // Move os elementos seguintes para a esquerda
+            for (int j = i; j < conjunto->tamanho - 1; j++) {
+                conjunto->elementos[j] = conjunto->elementos[j + 1];
+            }
+            conjunto->tamanho--;
+            return;
+        }
+    }
+}
+
+// Verifica se um elemento está no conjunto
+bool contemElemento(Conjunto *conjunto, int elemento) {
+    for (int i = 0; i < conjunto->tamanho; i++) {
+        if (conjunto->elementos[i] == elemento) {
+            return true;
+        }
+    }
+    return false;
+}
+
+// Imprime todos os elementos do conjunto
+void imprimirConjunto(Conjunto *conjunto) {
+    for (int i = 0; i < conjunto->tamanho; i++) {
+        printf("%d ", conjunto->elementos[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    Conjunto meuConjunto;
+    inicializarConjunto(&meuConjunto);
+    
+    adicionarElemento(&meuConjunto, 1);
+    adicionarElemento(&meuConjunto, 2);
+    adicionarElemento(&meuConjunto, 3);
+    adicionarElemento(&meuConjunto, 2); // Não deve ser adicionado
+
+    printf("Conjunto após adições: ");
+    imprimirConjunto(&meuConjunto);
+
+    removerElemento(&meuConjunto, 2);
+    printf("Conjunto após remoção do elemento 2: ");
+    imprimirConjunto(&meuConjunto);
+
+    printf("O conjunto contém o elemento 1? %s\n", contemElemento(&meuConjunto, 1) ? "Sim" : "Não");
+    printf("O conjunto contém o elemento 2? %s\n", contemElemento(&meuConjunto, 2) ? "Sim" : "Não");
+
+    return 0;
+}
